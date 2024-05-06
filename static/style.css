@@ -1,0 +1,161 @@
+#example,#example2 {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#example td, #example th,#example2 td, #example2 th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#example tr:nth-child(even),#example2 tr:nth-child(even){background-color: #f2f2f2;}
+
+#example tr:hover,#example2 tr:hover {background-color: #ddd;}
+
+#example th,#example2 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: lightgrey;
+  color: black;
+}
+/* CSS for search term highlighting */
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+label {
+  /*color: #cccccc0d;
+  position: absolute;
+  cursor: text;
+  transform: translateY(-25px);
+  transition: transform 0.3s ease;*/
+  /*left: 0;*/
+  /*bottom: -15px;*/
+}
+input {
+ width: 70%;
+    height: 40px;
+    font-size: 16px;
+    transition: 0.6s;
+    border: none;
+    border-bottom: 1px solid #07080d;
+    background-color: transparent;
+   margin-bottom: 10px;
+    margin-top: 10px;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #28a2a2;
+}
+.animation label {
+  transform: translateY(-55px);
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.animation-color label {
+  color: #28a2a2;
+}
+
+ .highlight {
+    background-color: yellow; /* Set your desired highlight color */
+    font-weight: bold; /* Optionally, make the text bold */
+}
+/*.dt-info,.dataTables_paginate {
+    display: none;
+}*/
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

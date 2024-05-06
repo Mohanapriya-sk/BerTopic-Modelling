@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Comments Topic Modeling</title>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  <!-- Include SearchHighlight plugin for DataTables -->
+  <script src="https://cdn.datatables.net/searchhighlight/1.1.0/dataTables.searchHighlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1 style="text-align:center">YouTube Comments Topic Modeling</h1>
+
+
+    <div class="container">
+  <div class="row py-5">
+    <div class="col-12" id="examplecontainer" style="width:100%;overflow-x: auto;">
+      <table id="example" class="table table-hover responsive nowrap display">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <!-- <th>Count</th> -->
+            <th>Representation</th>
+            <th>Comments</th>
+          </tr>
+       
+        </thead>
+        <tbody>
+        {% for index, row in topic_frequent_words.iterrows() %}
+        <tr>
+            <td style="text-wrap: wrap;">{{ row['Topic'] }}</td>
+            <!-- <td>{{ row['Count'] }}</td> -->
+            <td  style="text-wrap: wrap;">{{ row['Representation'] }}</td>
+            <td style="text-wrap: wrap;">{{ row['Representative_Docs'] }}</td>
+        </tr>
+      
+        {% endfor %}
+     <!--     <tfoot>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tfoot> -->
+</tbody>
+    </table>
+</div>
+     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+     <script src="https://ihbc.org.uk/consultationsdb_new/media/js/jquery.dataTables.js"></script>
+      
+     
+    <script>
+
+$(document).ready(function() {
+
+    // // Setup - add a text input to each footer cell
+    // $('#example tfoot th').each( function () {
+
+    //     var title = $('#example thead th').eq( $(this).index() ).text();
+    //     $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    // });
+
+    // DataTable initialization
+    var table = $('#example').DataTable({
+         // Enable search highlighting
+        language: {
+             // search: '<input type="search" id="global-search" style="display:none">'
+             searchPlaceholder:'Common Search...',
+             // paging: false
+        }
+        
+    });
+
+$('#example_filter input').on('keyup change', function() {
+        var searchValue = this.value.trim();
+
+        // Perform global search across all columns
+        table.search(searchValue).draw();
+
+        // Remove previous highlighting
+        table.rows().nodes().to$().find('.highlight').contents().unwrap();
+
+        // Apply custom highlighting to matched search terms
+        if (searchValue !== '') {
+            table.rows({ search: 'applied' }).nodes().to$().each(function() {
+                var $row = $(this);
+                $row.find('td').each(function() {
+                    var cellText = $(this).text();
+                    var highlightedText = cellText.replace(new RegExp(searchValue, 'gi'), function(match) {
+                        return '<span class="highlight">' + match + '</span>';
+                    });
+                    $(this).html(highlightedText);
+                });
+            });
+        }
+    });
+    // Apply the search and custom highlighting
+    // table.columns().eq(0).each(function (colIdx) {
+    //     $('input', table.column(colIdx).footer()).on('keyup change', function () {
+    //         // Get the value from the input box
+    //         var searchValue = this.value;
+
+    //         // Perform the search and draw the table
+    //         table.column(colIdx).search(searchValue).draw();
+
+    //         // Apply custom highlighting to matched search terms
+    //         table.column(colIdx).nodes().to$().find('.highlight').contents().unwrap(); // Remove previous highlights
+
+    //         if (searchValue !== '') {
+    //             table.column(colIdx).nodes().to$().each(function () {
+    //                 var cellText = $(this).text();
+    //                 var highlightedText = cellText.replace(new RegExp(searchValue, 'gi'), function (match) {
+    //                     return '<span class="highlight">' + match + '</span>';
+    //                 });
+    //                 $(this).html(highlightedText);
+    //             });
+    //         }
+    //     });
+
+    // });
+});
+
+
+
+    </script>
+</body>
+</html>

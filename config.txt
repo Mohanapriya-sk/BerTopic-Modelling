@@ -1,0 +1,10 @@
+python -m venv venv
+.\venv\Scripts\activate
+
+build tools download from https://visualstudio.microsoft.com/visual-cpp-build-tools/
+install visual studio c++ 14.0, download development c++
+conda install -c conda-forge hdbscan
+pip install bertopic
+pip install flask
+pip install nltk
+python app.py
